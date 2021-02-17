@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
+
+#asker-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff9f0;
+    border: 2px solid #f4ebdc;
+    border-radius: 5px;
+    padding: 10px;
+    left: 10px;
+    bottom: 10px;
+    z-index: 1000;
+}
+
+#history-container {
+    overflow-y: scroll;
+    width: 90%;
+    height: 90%;
+    background-color: #fff9f0;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#answers-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4ebdc;
+    border: 2px solid #f4ebdc;
+    border-radius: 5px;
+    width: 90%;
+}
+
+#answers-container > div > input {
+    border: 2px solid black;
+    border-radius: 7px;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ----------------------------------------- */
+
+/* Chat containers */
+#history-container > div {
+    border: 2px solid #F4EBDC;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.container > p {
+    font-family: 'Overpass', sans-serif;
+}
+
+/* Answer chat container */
+.answer {
+    align-self: flex-end;
+}
+
+.answer-red {
+    color: black !important;
+    background-color: #fa9478 !important;
+}
+
+.answer-green {
+    color: black !important;
+    background-color: #abd199 !important;
+}
+
+.answer-blue {
+    color: black !important;
+    background-color: #99c6c8 !important;
+}
+
+.answer-yellow {
+    color: black !important;
+    background-color: #ffe28c !important;
+}
+
+.answer > p {
+    float: right;
+    margin: 0;
+}
+
+/* Clear floats */
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.asker {
+    background-color: #f4ebdc;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.asker > p {
+    margin: 0;
+}
+
+.asker > img {
+    width: 40px;
+    margin-right: 10px;
+}

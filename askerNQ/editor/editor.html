@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>editor</title>
+    <link rel="stylesheet" href="style-editor.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="editor.js"></script>
+</head>
+<body>
+    <a href="../index.php"><p>Retour au questionnaire</p></a>
+    <div id="container-pop-up"></div>
+    <div id="container-editor">
+        <div id="container-list-questions">
+            <h2>Liste des questions</h2>
+            <div class="container-boxs"></div>
+            <div class="container-buttons">
+                <input type="button" value="ajouter une question" onclick="popUpContainer.showPopUpCreateQuestion()">
+                <input type="button" value="choisir question par défaut" onclick="popUpContainer.showPopUpChooseFirstQuestion()">
+            </div>
+        </div>
+        <div id="container-list-answers">
+            <h2>Liste des réponses</h2>
+            <div class="container-boxs"></div>
+            <div class="container-buttons">
+                <input type="button" value="ajouter une réponse" onclick="popUpContainer.showPopUpCreateAnswer()">
+            </div>
+        </div>
+        <div id="container-question-redirection">
+            <h2>Question de redirection</h2>
+            <div class="container-boxs"></div>
+            <div class="container-buttons">
+                <input type="button" value="ajouter/changer une question de redirection" onclick="popUpContainer.showPopUpCreateRedirectionQuestion()">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
 
 #asker-container {
+    max-width: 700px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

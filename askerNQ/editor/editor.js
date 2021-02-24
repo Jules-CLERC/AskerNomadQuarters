@@ -196,7 +196,10 @@ class ListQuestionsContainer {
         else {
             jsonFile.questions.forEach(function (item) {
                 let box = $('<div class="box">\n' +
-                    '           <input type="button" value="supprimer" onclick="popUpContainer.showPopUpConfirmDeleteQuestion(' + item.questionId + ')">\n' +
+                    '       <div class="box-id-container">\n' +
+                    '           <div><input type="button" value="supprimer" onclick="popUpContainer.showPopUpConfirmDeleteQuestion(' + item.questionId + ')"></div>\n' +
+                    '           <div><p> id : ' + item.questionId + '</p></div>\n' +
+                    '       </div>\n' +
                     '           <p class="box-text">' + item.question + '</p>\n' +
                     '           <input type="button" value="voir les réponses" onclick="viewAnswers(' + item.questionId + ')">\n' +
                     '      </div>');
@@ -255,7 +258,10 @@ class QuestionRedirectionContainer {
         }
         else {
             let box = $('<div class="box">\n' +
-                '           <input type="button" value="supprimer" onclick="popUpContainer.showPopUpConfirmDeleteRedirectionQuestion()">\n' +
+                '           <div class="box-id-container">\n' +
+                '           <div><input type="button" value="supprimer" onclick="popUpContainer.showPopUpConfirmDeleteRedirectionQuestion()"></div>\n' +
+                '           <div><p>id: ' + questionRedirectionId + '</p></div>\n' +
+                '           </div>\n' +
                 '           <p class="box-text">' + jsonQuestion.question + '</p>\n' +
                 '      </div>');
             this.container.append(box);
@@ -278,7 +284,10 @@ class PopUpContainer {
         let listQuestions = $('#list-questions');
         jsonFile.questions.forEach(function (item) {
             let boxQuestion = $('<div class="box">\n' +
-                '           <p class="box-text">' + item.question + '</p>\n' +
+                '<div class="box-id-container">\n' +
+                '           <div><p class="box-text">' + item.question + '</p></div>\n' +
+                '           <div><p>id :' + item.questionId + '</p></div>\n' +
+                '</div>\n' +
                 '           <input type="button" value="Sélectionner" onclick="chooseFirstQuestion(' + item.questionId + ')">\n' +
                 '      </div>');
             listQuestions.append(boxQuestion);
@@ -311,7 +320,10 @@ class PopUpContainer {
             let listQuestionsRedirection = $('#list-questions-redirection');
             jsonFile.questions.forEach(function (item) {
                 let boxQuestion = $('<div class="box">\n' +
-                    '           <p class="box-text">' + item.question + '</p>\n' +
+                    '           <div>\n' +
+                    '           <div><p class="box-text">' + item.question + '</p></div>\n' +
+                    '           <div><p>id :' + item.questionId + '</p></div>\n' +
+                    '           </div>\n' +
                     '           <input type="button" value="Sélectionner" onclick="createQuestionRedirection(' + item.questionId + ')">\n' +
                     '      </div>');
                 listQuestionsRedirection.append(boxQuestion);

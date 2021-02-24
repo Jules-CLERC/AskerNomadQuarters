@@ -73,3 +73,12 @@
 #container-pop-up-buttons > input {
     margin: 10px;
 }
+
+.box-id-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 90%;
+}

@@ -4,6 +4,28 @@ $(document).ready(function(){
     asker = new Asker();
 });
 
+function sendFiles(questionId) {
+    console.log(questionId);
+    let inputFile = $('#input-files-depot').get(0).files;
+    if(inputFile.length === 0) {
+        alert("vous devez sélectionner au moins un fichier.");
+    }
+    else {
+        console.log(inputFile);
+        $.ajax({
+            async: false,
+            url: "sendFiles.php",
+            method: "post",
+            data: { }
+        }).done(function (data) {
+            console.log(data);
+            console.log("envoi réussi.");
+        }).fail(function () {
+            alert("envoi impossible.");
+        });
+    }
+}
+
 function changeQuestion(questionRedirectionId, questionId, color) {
     asker.addAnswer(questionId, questionRedirectionId, color);
     asker.showQuestion(questionRedirectionId);
@@ -12,10 +34,6 @@ function changeQuestion(questionRedirectionId, questionId, color) {
 
 function addHtmlCode(container, txt) {
     container.innerHTML = container.innerHTML + txt;
-}
-
-function test() {
-    console.log("oui");
 }
 
 class Asker {
@@ -75,8 +93,14 @@ class Asker {
         let self = $(this);
         let color = 0;
         questionJSON.answers.forEach(function (item) {
-            let inputAnswer = '<div><input class="' + self[0].tabColors[color%4] + '" onclick="changeQuestion(' + item.questionRedirectionId + ', ' + questionId + ', ' + color%4 + ')" type="button" value="' + item.answer + '"></div>';
-            addHtmlCode(self[0].answersContainer, inputAnswer);
+            if(item.depot !== undefined) {
+                let inputDepot = '<div id="container-depot"><input name="monfichier" id="input-files-depot" type="file" value="séléctionner le(s) fichier(s)" multiple><input type="button" class="' + self[0].tabColors[color%4] + '" value="Envoyer" onclick="sendFiles(' + questionId + ')"></div>';
+                addHtmlCode(self[0].answersContainer, inputDepot);
+            }
+            else {
+                let inputAnswer = '<div><input class="' + self[0].tabColors[color%4] + '" onclick="changeQuestion(' + item.questionRedirectionId + ', ' + questionId + ', ' + color%4 + ')" type="button" value="' + item.answer + '"></div>';
+                addHtmlCode(self[0].answersContainer, inputAnswer);
+            }
             color++;
         });
     }

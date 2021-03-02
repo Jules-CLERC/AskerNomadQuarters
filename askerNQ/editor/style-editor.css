@@ -49,6 +49,10 @@
     align-items: flex-start;
 }
 
+.box-depot {
+    background-color: #4e4e4e;
+}
+
 #container-pop-up {
     position: absolute;
     margin-left: auto;

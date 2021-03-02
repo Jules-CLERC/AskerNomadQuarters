@@ -72,6 +72,20 @@ function createQuestionRedirection(idQuestionRedirection) {
     });
 }
 
+function deleteDepot(key) {
+    $.ajax({
+        async: false,
+        url: "deleteDepot.php",
+        method: "post",
+        data: { 'keyDepot': key, 'idQuestion': actualQuestionId }
+    }).done(function () {
+        reload();
+        listAnswersContainer.showList(actualQuestionId);
+    }).fail(function () {
+        alert("impossible de supprimer le dépot.");
+    });
+}
+
 function deleteAnswer(key) {
     $.ajax({
         async: false,
@@ -84,6 +98,26 @@ function deleteAnswer(key) {
     }).fail(function () {
         alert("impossible de supprimer la réponse.");
     });
+}
+
+function createDepot() {
+    let textArea = document.getElementById("pop-up-textarea-createDepot").value;
+    if (textArea.length === 0) {
+        alert("Votre légence de dépot ne contient aucun caractère.");
+    }
+    else {
+        $.ajax({
+            async: false,
+            url: "addDepot.php",
+            method: "post",
+            data: { 'textDepot': textArea, 'questionId': actualQuestionId }
+        }).done(function () {
+            reload();
+            listAnswersContainer.showList(actualQuestionId);
+        }).fail(function () {
+            alert("impossible d'ajouter le dépôt.");
+        });
+    }
 }
 
 function createAnswer() {
@@ -219,15 +253,27 @@ class ListAnswersContainer {
     showList(questionId) {
         this.container.empty();
         questionRedirectionContainer.container.empty();
+        $("#input-create-depot").attr("disabled", false);
         let self = $(this);
         let jsonQuestion = searchQuestion(questionId);
         let key = 0;
         jsonQuestion.answers.forEach(function (item) {
-            let box = $('<div class="box">\n' +
-                '           <input type="button" value="supprimer" onclick="popUpContainer.showPopUpConfirmDeleteAnswer(' + key + ')">\n' +
-                '           <p class="box-text">' + item.answer + '</p>\n' +
-                '           <input type="button" value="voir la question de redirection" onclick="viewQuestionRedirection(' + key + ', ' + item.questionRedirectionId + ')">\n' +
-                '      </div>');
+            let box;
+            if(item.depot !== undefined) {
+                box = $('<div class="box box-depot">\n' +
+                    '           <input type="button" value="supprimer" onclick="popUpContainer.showPopUpConfirmDeleteDepot(' + key + ')">\n' +
+                    '           <p class="box-text">' + item.depot + '</p>\n' +
+                    '           <input type="button" value="voir la question de redirection" onclick="viewQuestionRedirection(' + key + ', ' + item.questionRedirectionId + ')">\n' +
+                    '      </div>');
+                $("#input-create-depot").attr("disabled", true);
+            }
+            else {
+                box = $('<div class="box">\n' +
+                    '           <input type="button" value="supprimer" onclick="popUpContainer.showPopUpConfirmDeleteAnswer(' + key + ')">\n' +
+                    '           <p class="box-text">' + item.answer + '</p>\n' +
+                    '           <input type="button" value="voir la question de redirection" onclick="viewQuestionRedirection(' + key + ', ' + item.questionRedirectionId + ')">\n' +
+                    '      </div>');
+            }
             self[0].container.append(box);
             key++;
         });
@@ -331,6 +377,16 @@ class PopUpContainer {
         }
     }
 
+    showPopUpConfirmDeleteDepot(key) {
+        this.showPopUp();
+        let box = $('<h1> Souhaitez-vous vraiment supprimer ce dépôt ? </h1>\n' +
+            '        <div id="container-pop-up-buttons">\n' +
+            '            <input type="button" value="Valider" onclick="deleteDepot(' + key + ')">\n' +
+            '            <input type="button" value="Retour" onclick="closePopUp()">\n' +
+            '        </div>');
+        this.container.append(box);
+    }
+
     showPopUpConfirmDeleteAnswer(key) {
         this.showPopUp();
         let box = $('<h1> Souhaitez-vous vraiment supprimer cette réponse ? </h1>\n' +
@@ -339,6 +395,24 @@ class PopUpContainer {
             '            <input type="button" value="Retour" onclick="closePopUp()">\n' +
             '        </div>');
         this.container.append(box);
+    }
+
+    showPopUpCreateDepot() {
+        if (actualQuestionId === undefined) {
+            alert("Vous devez sélectionner une question");
+        }
+        else {
+            this.showPopUp();
+            let box = $('<h1> Création d\'un dépôt </h1>\n' +
+                '        <div>\n' +
+                '            <textarea id="pop-up-textarea-createDepot"></textarea>\n' +
+                '        </div>\n' +
+                '        <div id="container-pop-up-buttons">\n' +
+                '            <input type="button" value="Valider" onclick="createDepot()">\n' +
+                '            <input type="button" value="Retour" onclick="closePopUp()">\n' +
+                '        </div>');
+            this.container.append(box);
+        }
     }
 
     showPopUpCreateAnswer() {

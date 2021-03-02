@@ -20,6 +20,7 @@
     overflow-y: scroll;
     width: 90%;
     height: 90%;
+    max-height: 450px;
     background-color: #fff9f0;
     border: 2px solid #000000;
     border-radius: 5px;
@@ -50,6 +51,7 @@
     margin: 4px 2px;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
+    text-align: center;
 }
 
 /* ----------------------------------------- */
@@ -118,4 +120,12 @@
 .asker > img {
     width: 40px;
     margin-right: 10px;
+}
+
+#container-depot {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }

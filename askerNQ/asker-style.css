@@ -19,8 +19,7 @@
 #history-container {
     overflow-y: scroll;
     width: 90%;
-    height: 90%;
-    max-height: 450px;
+    height: 450px;
     background-color: #fff9f0;
     border: 2px solid #000000;
     border-radius: 5px;

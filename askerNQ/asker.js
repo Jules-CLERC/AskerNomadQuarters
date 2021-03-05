@@ -1,30 +1,11 @@
+//supprimer les fichiers après upload
+//modifier le texte whatsapp
+
 var asker;
 
 $(document).ready(function(){
     asker = new Asker();
 });
-
-function sendFiles(questionId) {
-    console.log(questionId);
-    let inputFile = $('#input-files-depot').get(0).files;
-    if(inputFile.length === 0) {
-        alert("vous devez sélectionner au moins un fichier.");
-    }
-    else {
-        console.log(inputFile);
-        $.ajax({
-            async: false,
-            url: "sendFiles.php",
-            method: "post",
-            data: { }
-        }).done(function (data) {
-            console.log(data);
-            console.log("envoi réussi.");
-        }).fail(function () {
-            alert("envoi impossible.");
-        });
-    }
-}
 
 function changeQuestion(questionRedirectionId, questionId, color) {
     asker.addAnswer(questionId, questionRedirectionId, color);
@@ -94,7 +75,7 @@ class Asker {
         let color = 0;
         questionJSON.answers.forEach(function (item) {
             if(item.depot !== undefined) {
-                let inputDepot = '<div id="container-depot"><input name="monfichier" id="input-files-depot" type="file" value="séléctionner le(s) fichier(s)" multiple><input type="button" class="' + self[0].tabColors[color%4] + '" value="Envoyer" onclick="sendFiles(' + questionId + ')"></div>';
+                let inputDepot = '<div id="container-depot"><form enctype="multipart/form-data" action="sendFiles.php" method="post"><input name="filesName[]" id="input-files-depot" type="file" value="séléctionner le(s) fichier(s)" multiple><input type="submit" class="' + self[0].tabColors[color%4] + '" value="Envoyer""></form></div>';
                 addHtmlCode(self[0].answersContainer, inputDepot);
             }
             else {

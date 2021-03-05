@@ -1,5 +1,6 @@
 {
     "require": {
-        "twilio/sdk": "^6.18"
+        "twilio/sdk": "^6.18",
+        "google/apiclient": "^2.0"
     }
 }

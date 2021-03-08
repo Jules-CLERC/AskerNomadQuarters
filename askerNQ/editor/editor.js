@@ -103,7 +103,7 @@ function deleteAnswer(key) {
 function createDepot() {
     let textArea = document.getElementById("pop-up-textarea-createDepot").value;
     if (textArea.length === 0) {
-        alert("Votre légence de dépot ne contient aucun caractère.");
+        alert("Votre légende de dépot ne contient aucun caractère.");
     }
     else {
         $.ajax({
@@ -405,7 +405,7 @@ class PopUpContainer {
             this.showPopUp();
             let box = $('<h1> Création d\'un dépôt </h1>\n' +
                 '        <div>\n' +
-                '            <textarea id="pop-up-textarea-createDepot"></textarea>\n' +
+                '            <textarea id="pop-up-textarea-createDepot" placeholder="Entrez la description du problème que l\'utilisateur recontre si celui-ci atteint ce dépôt"></textarea>\n' +
                 '        </div>\n' +
                 '        <div id="container-pop-up-buttons">\n' +
                 '            <input type="button" value="Valider" onclick="createDepot()">\n' +

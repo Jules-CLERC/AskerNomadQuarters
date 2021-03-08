@@ -128,3 +128,8 @@
     align-items: center;
     justify-content: space-evenly;
 }
+
+#container-depot > form {
+    display: flex;
+    flex-direction: column;
+}

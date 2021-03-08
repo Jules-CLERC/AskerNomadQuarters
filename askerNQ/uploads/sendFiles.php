@@ -37,7 +37,7 @@ $message = $twilio->messages
             https://drive.google.com/drive/folders/$folder_id\n
             adresse mail: $mail
             numéro de téléphone: $phone\n
-            Informations supplémentaires :\n
+            Informations Supplémentaires :\n
             $msg"
         )
     );

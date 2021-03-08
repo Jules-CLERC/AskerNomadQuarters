@@ -75,7 +75,24 @@ class Asker {
         let color = 0;
         questionJSON.answers.forEach(function (item) {
             if(item.depot !== undefined) {
-                let inputDepot = '<div id="container-depot"><form enctype="multipart/form-data" action="sendFiles.php" method="post"><input name="filesName[]" id="input-files-depot" type="file" value="séléctionner le(s) fichier(s)" multiple><input type="submit" class="' + self[0].tabColors[color%4] + '" value="Envoyer""></form></div>';
+                let inputDepot =
+                    '<div id="container-depot">' +
+                    '<form enctype="multipart/form-data" action="sendFiles.php" method="post">' +
+                    '<label for="fname">Prénom:</label>' +
+                    '<input type="text" name="fname" required><br>' +
+                    '<label for="lname">Nom:</label>' +
+                    '<input type="text" id="lname" name="lname" required><br>' +
+                    '<label for="phone">Numéro de téléphone:</label>' +
+                    '<input type="tel" name="phone"><br>' +
+                    '<label for="mail">Adresse mail</label>' +
+                    '<input type="email" name="mail" required><br>' +
+                    '<label for="infosplus">Informations complémentaires:</label>' +
+                    '<textarea name="infosplus" rows="5" cols="33"></textarea><br>' +
+                    '<input name="filesName[]" id="input-files-depot" type="file" value="séléctionner le(s) fichier(s)" multiple><br>' +
+                    '<input name="problem" type="hidden" value="' + item.depot + '">' +
+                    '<input type="submit" class="' + self[0].tabColors[color%4] + '" value="Envoyer"">' +
+                    '</form>' +
+                    '</div>';
                 addHtmlCode(self[0].answersContainer, inputDepot);
             }
             else {
